@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  
+  <title>WhatAmI-App: Real time object detection that reads object aloud</title>
+  <link rel="stylesheet" href="./WhatAmI-App_files/css">
+  <link rel="stylesheet" href="./WhatAmI-App_files/icon">
+  <link rel="stylesheet" href="./WhatAmI-App_files/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab environment="web" feedback-link="https://github.com/" selected="0" codelab-title="WhatAmI-App: Real time object detection that reads object aloud"><div id="drawer"><div class="steps"><ol><li completed="" selected=""><a href="https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#0"><span class="step"><span>Introduction</span></span></a></li><li><a href="https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#1"><span class="step"><span>Getting set up</span></span></a></li><li><a href="https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#2"><span class="step"><span>Steps to launch the app locally</span></span></a></li><li><a href="https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#3"><span class="step"><span>Verify App locally</span></span></a></li><li><a href="https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#4"><span class="step"><span>Congratulation!</span></span></a></li><li><a href="https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#5"><span class="step"><span>Working of the App</span></span></a></li><li><a href="https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#6"><span class="step"><span>Pipeline Design</span></span></a></li><li><a href="https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#7"><span class="step"><span>Analysis of the Models</span></span></a></li><li><a href="https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#8"><span class="step"><span>Issues faced</span></span></a></li></ol></div><div class="metadata">Did you find a mistake?<a target="_blank" href="https://github.com/">Please file a bug</a>.</div></div><div id="main"><div id="codelab-title"><div id="codelab-nav-buttons"><a href="https://codelabs-preview.appspot.com/" id="arrow-back"><i class="material-icons">arrow_back</i></a><a href="https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#" id="menu"><i class="material-icons">menu</i></a></div><h1 class="title">WhatAmI-App: Real time object detection that reads object aloud</h1><div id="time-remaining" title="Time remaining"><i class="material-icons">access_time</i>0 mins remaining</div></div><div id="steps"><google-codelab-step label="Introduction" duration="0" step="1" selected=""><div class="instructions"><div class="inner"><h2 class="step-title">1. Introduction</h2>
+        <p>WhatAmI-App was initially proposed to deploy as an Android Application for Visually impaired people to identify and read the object aloud. Focusing its main use case for people who suddenly lose eyesight. Due to time constraint and lack of knowledge with android development we come up with the web application design of the same proposed concept. </p>
+<p><strong>Note : </strong>The Application cannot be hosted on cloud since it requires webcam interface as one of the major component.</p>
+<h2><strong>What you will build</strong></h2>
+<table>
+<tbody><tr><td colspan="1" rowspan="1"><p>In this codelab, you're going to build a Real time object detection web app using tensorflow api and a object classification using 19 layered CNN model . Your app will:</p>
+<ul>
+<li>Detect object real time</li>
+<li>Detect object in a given Image.</li>
+<li>Reads the detected object aloud</li>
+</ul>
+</td><td colspan="1" rowspan="1"><p><img style="max-width: 298.00px" src="./WhatAmI-App_files/pasted image 0.png"></p>
+</td></tr>
+</tbody></table>
+<h2 class="checklist"><strong>What you'll learn</strong></h2>
+<ul class="checklist">
+<li>How to design and construct an app using flask</li>
+<li>How to make your app </li>
+<li>How to use train model</li>
+</ul>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Getting set up" duration="0" step="2"><div class="instructions"><div class="inner"><h2 class="step-title">2. Getting set up</h2>
+        <h2><strong>Download the Code</strong></h2>
+<p>Click the following link to download all the code zip from github for this codelab:</p>
+<p><a href="https://github.com/DivyaEmmanuel/Cognitive_Computing_Systems" target="_blank">WhatAmI-App</a></p>
+<p>Unpack the downloaded zip file from the link. This will unpack a folder (<code>your-first-pwapp-master</code>), which contains one root folder in which all our written python file resides along with all of the resources you will need.</p>
+<p>Now open a cmd at your local machine and go to the directory where the extracted zip folder resides. Traverse to the root directory by following below path :</p>
+<p>Tensorflow &gt; models-master &gt;research &gt;object_detection</p>
+<p>These folder are nothing but the Tensorflow Object detection source code. We have located our python file inside <strong>object_detection </strong> folder. </p>
+<p>Make sure python version is above 3.5+ by giving below command in cmd:</p>
+<p><strong>&gt;&gt;python --version</strong></p>
+<p>if not download the latest version from below link :</p>
+<p><a href="https://www.python.org/downloads/" target="_blank">Download python</a></p>
+<h2><strong>Install the required packages</strong></h2>
+<p>Once you have require python version on the OS, try to install all required packages by giving below command in the same directory:</p>
+<p><strong>&gt;&gt;pip install -r requirement.txt</strong></p>
+<p>If you do not have pip installed reference below link:</p>
+<p><a href="https://www.makeuseof.com/tag/install-pip-for-python/" target="_blank">how to install pip</a></p>
+<p>Now that we have installed all dependencies , let launch the web-app.</p>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Steps to launch the app locally" duration="0" step="3"><div class="instructions"><div class="inner"><h2 class="step-title">3. Steps to launch the app locally</h2>
+        <p>Now in the same directory give below command to run the flask application locally.</p>
+<p><strong>&gt;&gt;python real_time_object_detection.py</strong></p>
+<p>Wait until the app get initialised. You should get below result in your cmd:</p>
+<p><img style="max-width: 624.00px" src="./WhatAmI-App_files/pasted image 0(1).png"></p>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Verify App locally" duration="0" step="4"><div class="instructions"><div class="inner"><h2 class="step-title">4. Verify App locally</h2>
+        <p>Open a web browser and type https:127.0.0.1:5000/ to view the launched flask web application. Below web page needs to be displayed:</p>
+<p><img style="max-width: 624.00px" src="./WhatAmI-App_files/pasted image 0(2).png"></p>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Congratulation!" duration="0" step="5"><div class="instructions"><div class="inner"><h2 class="step-title">5. Congratulation!</h2>
+        <p>You have used Tensorflow Object detection api and a pre trained CNN model to deploy a flask web application.</p>
+<p>Customise below python file and template folder to build your own app :</p>
+<ul>
+<li><strong>detect_object.py</strong> - file that uses Tensorflow Object detection api along with OpenCV to detect real-time object</li>
+<li><strong>text2speech.py</strong> - used read the detected label aloud</li>
+<li><strong>real_time_object_detection.py </strong>- file that implements the flask application</li>
+<li><strong>templates/web_page.html</strong> - file that designs the web page</li>
+</ul>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Working of the App" duration="0" step="6"><div class="instructions"><div class="inner"><h2 class="step-title">6. Working of the App</h2>
+        
+
+      </div></div></google-codelab-step><google-codelab-step label="Pipeline Design" duration="0" step="7"><div class="instructions"><div class="inner"><h2 class="step-title">7. Pipeline Design</h2>
+        <p><img style="max-width: 624.00px" src="./WhatAmI-App_files/pasted image 0(3).png"></p>
+
+
+      </div></div></google-codelab-step><google-codelab-step label="Analysis of the Models" duration="0" step="8"><div class="instructions"><div class="inner"><h2 class="step-title">8. Analysis of the Models</h2>
+        
+
+      </div></div></google-codelab-step><google-codelab-step label="Issues faced" duration="0" step="9"><div class="instructions"><div class="inner"><h2 class="step-title">9. Issues faced</h2>
+        <ul>
+<li>Trouble with converting the detected real time label into speech since video frames was continuous</li>
+<li>Lack of knowledge in android development</li>
+<li>In Spite of expertise, tried "python-for-android" module to build apk directly from flask application ( unexpected error with gcc compiler )</li>
+<li>Tried deploying the application in cloud and figured out the requirement for camera instance</li>
+</ul>
+
+
+      </div></div></google-codelab-step></div><div id="controls"><div id="fabs"><a href="https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#" id="previous-step" title="Previous step" disappear="">Back</a><div class="spacer"></div><a href="https://codelabs-preview.appspot.com/?file_id=1Xkll6-yFys6pIvLUjVbcVcU59SxHIoJtnPZRGV6VSnc#" id="next-step" title="Next step">Next</a><a href="https://codelabs-preview.appspot.com/" id="done" hidden="" title="Codelab complete">Done</a></div></div></div></google-codelab>
+
+  <script async="">
+    document.addEventListener("DOMContentLoaded", function() {
+      var pubBtn = document.getElementById('publishButton');
+      var pubForm = document.getElementById('publishForm');
+      var pubStatus = document.getElementById('publishButtonStatus');
+
+      pubForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        pubBtn.disabled = true;
+        pubStatus.textContent = '';
+        pubStatus.classList.remove('success');
+        pubStatus.classList.remove('error');
+
+        var req = new XMLHttpRequest();
+
+        var onError = function() {
+          var msg = 'Request failed';
+          if (req.statusText) {
+            msg += ' with status "' + req.statusText + '"';
+          }
+          if (req.responseText) {
+            msg += ': ' + req.responseText;
+          }
+          pubStatus.classList.add('error');
+          pubStatus.textContent = msg;
+          pubBtn.disabled = false;
+        };
+
+        req.addEventListener('load', function() {
+          if (req.status != 200) {
+            onError();
+            return;
+          }
+          pubStatus.textContent = ('Publication request submitted' +
+            ' (reload preview to re-publish)');
+          pubStatus.classList.add('success');
+        });
+        req.addEventListener('error', onError);
+        req.addEventListener('abort', onError);
+        req.open("post", pubForm.action);
+        req.send(new FormData(pubForm));
+      });
+    });
+  </script>
+
+  <script src="./WhatAmI-App_files/native-shim.js.download"></script>
+  <script src="./WhatAmI-App_files/custom-elements.min.js.download"></script>
+  <script src="./WhatAmI-App_files/prettify.js.download"></script>
+  <script src="./WhatAmI-App_files/codelab-elements.js.download"></script>
+
+
+</body></html>
